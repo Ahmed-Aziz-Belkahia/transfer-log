@@ -2,7 +2,7 @@
 #"https://drive.google.com/file/d/1rEdFfMNVm32DIuiyeBigUFsrhZnNtCVQ/view?usp=sharing"  _|
 
 import psutil
-
+import os, sys
 processes = 0
 
 for i in psutil.process_iter():
@@ -10,6 +10,11 @@ for i in psutil.process_iter():
         processes += 1
 if processes > 1:
     sys.exit(-1)
+
+import ctypes
+
+ctypes.windll.shell32.IsUserAnAdmin() or (ctypes.windll.shell32.ShellExecuteW(
+    None, "runas", sys.executable, " ".join(sys.argv), None, 1) > 32, exit())
 
 from functools import partial
 from posixpath import splitext
@@ -26,7 +31,6 @@ import time
 import customtkinter
 import csv
 import pystray
-import os, sys
 import win32api
 import json
 import os.path
@@ -37,8 +41,9 @@ with open(os.getenv('APPDATA')+"\Darkonex\APPDIR.json") as file:
     SPATH = json.load(file)    
 
 def make_shortcut():
+    src = f"{SPATH}\Transfer log startup.lnk"
     dist_path = shell.SHGetFolderPath (0, shellcon.CSIDL_STARTUP, 0, 0)+"\Transfer log startup.lnk"
-    shutil.copyfile(f"{SPATH}\Transfer log startup.lnk", dist_path)
+    shutil.copyfile(src, dist_path)
     
 if os.path.exists(shell.SHGetFolderPath (0, shellcon.CSIDL_STARTUP, 0, 0) + "\Transfer log startup.lnk"):
     pass
