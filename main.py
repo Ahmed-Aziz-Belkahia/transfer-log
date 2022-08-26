@@ -1,4 +1,4 @@
-#ze
+#u can't run this program for now
 
 import psutil
 
