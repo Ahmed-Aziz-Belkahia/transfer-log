@@ -3,6 +3,7 @@
 
 import psutil
 import os, sys
+
 processes = 0
 
 for i in psutil.process_iter():
@@ -10,11 +11,6 @@ for i in psutil.process_iter():
         processes += 1
 if processes > 1:
     sys.exit(-1)
-
-import ctypes
-
-ctypes.windll.shell32.IsUserAnAdmin() or (ctypes.windll.shell32.ShellExecuteW(
-    None, "runas", sys.executable, " ".join(sys.argv), None, 1) > 32, exit())
 
 from functools import partial
 from posixpath import splitext
