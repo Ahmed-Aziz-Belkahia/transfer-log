@@ -1,5 +1,5 @@
-#u can't run this program for now
-
+#u can't run this program from main.py you must download it from here                   |
+#"https://drive.google.com/file/d/1rEdFfMNVm32DIuiyeBigUFsrhZnNtCVQ/view?usp=sharing"  _|
 import psutil
 
 processes = 0
