@@ -1,4 +1,4 @@
-#you can't run this program from main.py you must download it from here                   |
+#you can't run this program from "main.py" you must download it from here                   |
 #"https://drive.google.com/file/d/1rEdFfMNVm32DIuiyeBigUFsrhZnNtCVQ/view?usp=sharing"  _|
 import psutil
 
