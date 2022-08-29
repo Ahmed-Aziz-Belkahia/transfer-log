@@ -98,7 +98,7 @@ else:
     with open(f"{SPATH}/Settings.json", "w") as file:
         json.dump(Settings, file, indent=4)
 
-def Run_on_startup_on():
+def Run_on_startup_check():
     Update_Settings()
     if Run_On_Startup.get() == 1:
         while True:
@@ -189,7 +189,7 @@ if Run_In_Background.get() == 1 and '-startup' in sys.argv:
 
 try:
     menu_edit.add_checkbutton(label="Run in background", onvalue=1, offvalue=0, variable=Run_In_Background, command=Update_Settings)
-    menu_edit.add_checkbutton(label="Run on startup", onvalue=1, offvalue=0, variable=Run_On_Startup, command=Run_on_startup_on)
+    menu_edit.add_checkbutton(label="Run on startup", onvalue=1, offvalue=0, variable=Run_On_Startup, command=Run_on_startup_check)
     menu_edit.add_checkbutton(label="log duplicate files", onvalue=1, offvalue=0, variable=log_dup, command=Update_Settings)
     menu_edit.add_checkbutton(label="log .tmp files", onvalue=1, offvalue=0, variable=log_tmp, command=Update_Settings)
 except: sys.exit()
@@ -319,7 +319,7 @@ for path in paths:
     targetPath = path
     observer.schedule(my_event_handler, targetPath, recursive=True)
 observer.start()
-Run_on_startup_on()
+Run_on_startup_check()
 
 main.protocol("WM_DELETE_WINDOW", raiserr)
 main.mainloop()
