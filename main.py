@@ -33,6 +33,7 @@ import os.path
 import shutil
 
 SPATH = ""
+
 with open(os.getenv('APPDATA')+"\Darkonex\APPDIR.json") as file:
     SPATH = json.load(file)    
 
@@ -40,11 +41,6 @@ def make_shortcut():
     src = f"{SPATH}\Transfer log startup.lnk"
     dist_path = shell.SHGetFolderPath (0, shellcon.CSIDL_STARTUP, 0, 0)+"\Transfer log startup.lnk"
     shutil.copyfile(src, dist_path)
-    
-if os.path.exists(shell.SHGetFolderPath (0, shellcon.CSIDL_STARTUP, 0, 0) + "\Transfer log startup.lnk"):
-    pass
-else:
-    make_shortcut()
 
 #creating window
 main = customtkinter.CTk()
@@ -189,7 +185,6 @@ menu_file.add_separator()
 menu_file.add_command(label='Exit', command=Exit)
 
 if Run_In_Background.get() == 1 and '-startup' in sys.argv:
-    main.withdraw()
     raiserr()
 
 try:
