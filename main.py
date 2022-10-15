@@ -1,7 +1,7 @@
 #you can't run this program from "main.py" you must download it from here               |
 #"https://drive.google.com/file/d/1Wg7pXeLxtRZqmwfCsPvdaB0TRJb09wGo/view?usp=sharing"  _|
 
-import psutil
+import psutil   
 import os, sys
 
 processes = 0
@@ -250,18 +250,18 @@ def sort(column):
 for column in columns:
     table.heading(column, text=column, command=partial(sort, column))
 rows = cursor.execute("SELECT * FROM transfer_log").fetchall()
-def inser_db_to_table():
+def insert_db_to_table():
     for i in range(cursor.execute("SELECT COUNT(*) FROM transfer_log").fetchone()[0]):
         row = rows[i]
         try:
             table.insert(parent="", index="end", iid=row[0], text="parent", values=(row[1], row[2], row[3]))
         except:continue
-inser_db_to_table()
+insert_db_to_table()
 
 def search(event):
     keyword = f"{search_keyword.get()}%"
     if len(keyword)-1 == 0:
-        inser_db_to_table()
+        insert_db_to_table()
         return
     rows = cursor.execute("SELECT * FROM transfer_log WHERE File_name LIKE ?", [keyword]).fetchall()
     for row in table.get_children():
